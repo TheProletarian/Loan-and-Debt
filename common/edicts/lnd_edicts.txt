@@ -1,6 +1,6 @@
 lnd_one_year_loan = {
 	length = 360
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_energy"
 	resources = {
 		category = campaigns
 		cost = {
@@ -15,6 +15,7 @@ lnd_one_year_loan = {
 
 	modifier = {
 		pop_government_ethic_attraction = -0.25
+		pop_cat_specialist_political_power = 0.2
 	}
 
 	potential = {
@@ -29,7 +30,7 @@ lnd_one_year_loan = {
 
 lnd_five_year_loan = {
 	length = 1800
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_energy"
 	resources = {
 		category = campaigns
 		cost = {
@@ -44,6 +45,7 @@ lnd_five_year_loan = {
 
 	modifier = {
 		pop_government_ethic_attraction = -0.33
+		pop_cat_specialist_political_power = 0.4
 	}
 
 	potential = {
@@ -63,7 +65,7 @@ lnd_five_year_loan = {
 
 lnd_ten_year_loan = {
 	length = 3600
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_energy"
 	resources = {
 		category = campaigns
 		cost = {
@@ -78,6 +80,7 @@ lnd_ten_year_loan = {
 
 	modifier = {
 		pop_government_ethic_attraction = -0.5
+		pop_cat_specialist_political_power = 0.6
 	}
 
 	potential = {
@@ -97,7 +100,7 @@ lnd_ten_year_loan = {
 
 lnd_warbonds = {
 	length = 3600
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_alloys"
 	resources = {
 		category = campaigns
 		cost = {
@@ -105,7 +108,7 @@ lnd_warbonds = {
 			multiplier = value:edict_size_effect
 		}
 		upkeep = {
-			alloys = 15
+			energy = 90
 			multiplier = value:edict_size_effect
 		}
 	}
@@ -113,6 +116,7 @@ lnd_warbonds = {
 	modifier = {
 		country_war_exhaustion_mult = 0.25
 		pop_ethic_militarist_attraction_mult = -0.5
+		pop_cat_specialist_political_power = 0.25
 	}
 
 	potential = {
@@ -137,7 +141,7 @@ lnd_warbonds = {
 
 lnd_warscrapping = {
 	length = 3600
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_alloys"
 	resources = {
 		category = campaigns
 		cost = {
@@ -145,7 +149,7 @@ lnd_warscrapping = {
 			multiplier = value:edict_size_effect
 		}
 		upkeep = {
-			alloys = 15
+			energy = 90
 			multiplier = value:edict_size_effect
 		}
 	}
@@ -181,7 +185,7 @@ lnd_warscrapping = {
 
 lnd_gmf_development_loan = {
 	length = 3600
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_minerals"
 	resources = {
 		category = campaigns
 		cost = {
@@ -189,7 +193,7 @@ lnd_gmf_development_loan = {
 			multiplier = value:edict_size_effect
 		}
 		upkeep = {
-			minerals = 90
+			energy = 90
 			multiplier = value:edict_size_effect
 		}
 	}
@@ -226,7 +230,7 @@ lnd_gmf_development_loan = {
 
 lnd_gmf_development_loan_gestalt = {
 	length = 3600
-	icon = "GFX_edict_type_time"
+	icon = "GFX_resource_minerals"
 	resources = {
 		category = campaigns
 		cost = {
@@ -234,7 +238,7 @@ lnd_gmf_development_loan_gestalt = {
 			multiplier = value:edict_size_effect
 		}
 		upkeep = {
-			minerals = 90
+			energy = 90
 			multiplier = value:edict_size_effect
 		}
 	}
@@ -263,6 +267,108 @@ lnd_gmf_development_loan_gestalt = {
 			
 		}
 	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_consumer_loans = {
+	length = 3600
+	icon = "GFX_resource_consumer_goods"
+	resources = {
+		category = campaigns
+		cost = {
+			consumer_goods = -2500
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_cat_ruler_happiness = -0.1
+		trade_value_mult = -0.1
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		NOT = { has_ethic = ethic_gestalt_consciousness }
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_global_production_strategy" }
+	show_tech_unlock_if = {
+		is_gestalt = no 
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_consumer_loans_servitors = {
+	length = 3600
+	icon = "GFX_resource_consumer_goods"
+	resources = {
+		category = campaigns
+		cost = {
+			consumer_goods = -2500
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		pop_amenities_usage_mult = 0.15
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		has_civic = civic_machine_servitor
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_global_production_strategy" }
+	show_tech_unlock_if = {
+		has_civic = civic_machine_servitor
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_food_loans = {
+	length = 3600
+	icon = "GFX_resource_food"
+	resources = {
+		category = campaigns
+		cost = {
+			food = -5000
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		country_influence_produces_mult = -0.2
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_nano_vitality_crops" }
 
 	ai_weight = {
 		weight = 0
