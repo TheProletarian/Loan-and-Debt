@@ -375,3 +375,76 @@ lnd_food_loans = {
 	}
 }
 
+lnd_mineral_loans = {
+	length = 3600
+	icon = "GFX_resource_minerals"
+	resources = {
+		category = campaigns
+		cost = {
+			minerals = -5000
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.05
+		pop_environment_tolerance = -0.1
+		lithoid_pop_happiness = -0.1
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+		is_machine_empire = no
+	}
+
+	prerequisites = { "tech_mining_3" }
+	show_tech_unlock_if = {
+		is_machine_empire = no
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_mineral_loans_machine = {
+	length = 3600
+	icon = "GFX_resource_minerals"
+	resources = {
+		category = campaigns
+		cost = {
+			minerals = -5000
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_structures_cost_mult = 0.05
+		planet_pop_assembly_mult = -0.1
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+		is_machine_empire = yes
+	}
+
+	prerequisites = { "tech_mining_3" }
+	show_tech_unlock_if = {
+		is_machine_empire = yes
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+

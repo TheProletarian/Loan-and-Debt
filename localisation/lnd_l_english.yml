@@ -29,3 +29,7 @@
  edict_lnd_consumer_loans_servitors_desc:0 "To continue the execution of pampering protocols we will have to make a deal with foreign companies. Of course we will have to pay in the future for their <<generosity>>."
  edict_lnd_food_loans:0 "Take Food Loans"
  edict_lnd_food_loans_desc:0 "To prevent food shortages we will sign a contract with foreign agricultural conglomerates. For they help they demand generous payments in energy credits."
+ edict_lnd_mineral_loans:0 "Take Mineral Loans"
+ edict_lnd_mineral_loans_desc:0 "To continue investments into infrastructure and industry we signed contracts with mining conglomerates. They expect reduced environmental protections and right to exploit lithoid cementaries if they find any on their lands."
+ edict_lnd_mineral_loans_machine:0 "Take Mineral Loans"
+ edict_lnd_mineral_loans_machine_desc:0 "To continue investments into infrastructure and industry we signed contracts with mining conglomerates. In return they want to be given the right to scrap and sell malfunctioning or outdated droids."
