@@ -1,0 +1,9 @@
+lnd_loans = {
+	use_for_ai_budget = yes
+	parent = country
+	generate_mult_modifiers = {
+		cost
+		upkeep
+	}
+	modifier_category = country
+}

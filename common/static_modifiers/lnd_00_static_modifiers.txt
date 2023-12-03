@@ -1,0 +1,5 @@
+lnd_agenda_debt_restructuring_finish = {
+	lnd_loans_upkeep_mult = -0.4
+	lnd_loans_cost_mult = -0.5
+	planet_stability_add = -15
+}

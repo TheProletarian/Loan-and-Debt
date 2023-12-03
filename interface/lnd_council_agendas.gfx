@@ -1,0 +1,6 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_council_agenda_icon_lnd_debt_restructuring"
+		texturefile = "gfx/interface/icons/agenda_icons/agenda_lnd_debt_restructuring.dds"
+	}
+}

@@ -1,0 +1,30 @@
+@base_agenda_cost = 7000
+
+lnd_debt_restructuring = {
+	agenda_cost = @base_agenda_cost
+	potential = {
+		always = yes
+	}
+	allow = {
+		OR = {
+			has_edict = lnd_one_year_loan
+			has_edict = lnd_five_year_loan
+			has_edict = lnd_ten_year_loan
+			has_edict = lnd_warbonds
+			has_edict = lnd_warscrapping
+			has_edict = lnd_gmf_development_loan
+			has_edict = lnd_gmf_development_loan_gestalt
+			has_edict = lnd_consumer_loans
+			has_edict = lnd_consumer_loans_servitors
+			has_edict = lnd_food_loans
+			has_edict = lnd_mineral_loans
+			has_edict = lnd_mineral_loans_machine
+		}
+	}
+	modifier = {
+		lnd_loans_upkeep_mult = -0.1
+		lnd_loans_cost_mult = -0.5
+		planet_stability_add = -5
+	}
+	finish_modifier = lnd_agenda_debt_restructuring_finish
+}
