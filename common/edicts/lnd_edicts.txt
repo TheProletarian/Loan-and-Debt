@@ -133,6 +133,9 @@ lnd_warbonds = {
 	}
 
 	prerequisites = { "tech_interstellar_campaigns" }
+	show_tech_unlock_if = {
+		is_gestalt = no 
+	}
 
 	ai_weight = {
 		weight = 0
@@ -173,6 +176,9 @@ lnd_warscrapping = {
 	}
 
 	prerequisites = { "tech_interstellar_campaigns" }
+	show_tech_unlock_if = {
+		is_gestalt = yes
+	}
 
 	ai_weight = {
 		weight = 0
@@ -442,6 +448,99 @@ lnd_mineral_loans_machine = {
 	show_tech_unlock_if = {
 		is_machine_empire = yes
 	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_exotic_gas_loans = {
+	length = 3600
+	icon = "GFX_resource_exotic_gases_large"
+	resources = {
+		category = lnd_loans
+		cost = {
+			exotic_gases = -500
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_researchers_upkeep_mult = 0.2
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_exotic_gases" }
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_volatile_motes_loans = {
+	length = 3600
+	icon = "GFX_resource_volatile_motes_large"
+	resources = {
+		category = lnd_loans
+		cost = {
+			volatile_motes = -500
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_metallurgists_upkeep_mult = 0.20
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_volatile_motes" }
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+lnd_rare_crystals_loans = {
+	length = 3600
+	icon = "GFX_resource_rare_crystals_large"
+	resources = {
+		category = lnd_loans
+		cost = {
+			rare_crystals = -500
+			multiplier = value:edict_size_effect
+		}
+		upkeep = {
+			energy = 90
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_artisans_upkeep_mult = 0.20
+	}
+
+	potential = {
+		NOT = { has_modifier = country_defaulted }
+		num_communications > 2
+	}
+
+	prerequisites = { "tech_rare_crystals" }
 
 	ai_weight = {
 		weight = 0
