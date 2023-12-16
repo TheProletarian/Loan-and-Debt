@@ -1,8 +1,8 @@
-version="1.0.3"
+version="1.1"
 tags={
 	"Economy"
 }
 name="Loans and Debt"
 picture="thumbnail.png"
-supported_version="3.10.1"
+supported_version="3.10.4"
 remote_file_id="3098201548"

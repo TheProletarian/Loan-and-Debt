@@ -1,0 +1,41 @@
+# this = country
+on_monthly_pulse_country = {
+	events = {
+		lnd_faction_events.10
+		lnd_faction_events.15
+		lnd_faction_events.16
+		lnd_faction_events.17
+		lnd_faction_events.18
+		lnd_faction_events.19
+		lnd_faction_events.20
+		lnd_faction_events.21
+		lnd_faction_events.26
+		lnd_faction_events.27
+		lnd_faction_events.28
+		lnd_faction_events.29
+		lnd_faction_events.34
+		lnd_faction_events.35
+		lnd_faction_events.36
+		lnd_faction_events.37
+		lnd_faction_events.42
+		lnd_faction_events.43
+		lnd_faction_events.44
+		lnd_faction_events.45
+		lnd_faction_events.50
+		lnd_faction_events.51
+		lnd_faction_events.52
+		lnd_faction_events.53
+		lnd_faction_events.58
+		lnd_faction_events.59
+		lnd_faction_events.60
+		lnd_faction_events.61
+		lnd_faction_events.66
+		lnd_faction_events.67
+		lnd_faction_events.68
+		lnd_faction_events.69
+		lnd_faction_events.74
+		lnd_faction_events.75
+		lnd_faction_events.76
+		lnd_faction_events.77
+	}
+}

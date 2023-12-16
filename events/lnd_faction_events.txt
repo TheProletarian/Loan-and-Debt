@@ -1,0 +1,2122 @@
+namespace = lnd_faction_events
+
+# unfortunatly i couldn't implement those events by more condensed events like the one commented-out below
+
+# country_event = {
+# 	id = lnd_faction_events.10
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	trigger = { 
+# 		is_country_type = default
+# 		NOT = { has_country_flag = lnd_xenophile_faction_loyality_cooldown }
+# 		OR = {
+# 			has_faction = xenoist
+# 			has_modifier = lnd_xenophile_faction_loyal
+# 		}
+# 	 }
+
+# 	immediate = {
+# 		if = {
+# 			limit = {
+# 				NOT = { has_modifier = lnd_xenophile_faction_loyal }
+# 				any_pop_faction = {
+# 					is_pop_faction_type = xenoist
+# 					support > 0.1
+# 					faction_approval > 0.59
+# 				}
+# 			}
+# 			add_modifier = {
+# 				modifier = lnd_xenophile_faction_loyal
+# 				days = -1
+# 			}
+# 			set_timed_country_flag = {
+# 				flag = lnd_xenophile_faction_loyality_cooldown
+# 				days = 720
+# 			}
+# 			if = {
+# 				limit = {
+# 					NOT = { has_country_flag = lnd_faction_events_STFU }
+# 				}
+# 				country_event = { id = lnd_faction_events.11 days = 1 }
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_modifier = lnd_xenophile_faction_loyal
+# 				OR = {
+# 					any_pop_faction = {
+# 						is_pop_faction_type = xenoist
+# 						support < 0.08
+# 					}
+# 					any_pop_faction = {
+# 						is_pop_faction_type = xenoist
+# 						faction_approval < 0.5
+# 					}
+# 				}
+				
+# 			}
+# 			set_timed_country_flag = {
+# 				flag = lnd_xenophile_faction_loyality_cooldown
+# 				days = 720
+# 			}
+# 			remove_modifier = lnd_xenophile_faction_loyal
+# 			if = {
+# 				limit = {
+# 					NOT = { has_country_flag = lnd_faction_events_STFU }
+# 				}
+# 				country_event = { id = lnd_faction_events.12 days = 1 }
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				NOT = { has_modifier = lnd_xenophile_faction_disloyal }
+# 				num_communications > 4
+# 				any_pop_faction = {
+# 					is_pop_faction_type = xenoist
+# 					support > 0.1
+# 					faction_approval < 0.4
+# 				}
+# 			}
+# 			add_modifier = {
+# 				modifier = lnd_xenophile_faction_disloyal
+# 				days = -1
+# 			}
+# 			set_timed_country_flag = {
+# 				flag = lnd_xenophile_faction_loyality_cooldown
+# 				days = 720
+# 			}
+# 			if = {
+# 				limit = {
+# 					NOT = { has_country_flag = lnd_faction_events_STFU }
+# 				}
+# 				country_event = { id = lnd_faction_events.13 days = 1 }
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_modifier = lnd_xenophile_faction_disloyal
+# 				OR = {
+# 					any_pop_faction = {
+# 						is_pop_faction_type = xenoist
+# 						support < 0.08
+# 					}
+# 					any_pop_faction = {
+# 						is_pop_faction_type = xenoist
+# 						faction_approval > 0.5
+# 					}
+# 				}
+
+# 			}
+# 			set_timed_country_flag = {
+# 				flag = lnd_xenophile_faction_loyality_cooldown
+# 				days = 720
+# 			}
+# 			remove_modifier = lnd_xenophile_faction_disloyal
+# 			if = {
+# 				limit = {
+# 					NOT = { has_country_flag = lnd_faction_events_STFU }
+# 				}
+# 				country_event = { id = lnd_faction_events.14 days = 1 }
+# 			}
+# 		}
+# 	}
+# }
+
+# xenoist faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_xenophile_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_xenophile_faction_loyal }
+		AND = {
+			has_faction = xenoist
+			any_pop_faction = {
+				is_pop_faction_type = xenoist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_xenophile_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_xenophile_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.11 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.15
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_xenophile_faction_loyality_cooldown }
+		has_modifier = lnd_xenophile_faction_loyal
+		AND = {
+			has_faction = xenoist
+			any_pop_faction = {
+				is_pop_faction_type = xenoist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_xenophile_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_xenophile_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.12 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.16
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_xenophile_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_xenophile_faction_disloyal }
+		AND = {
+			has_faction = xenoist
+			any_pop_faction = {
+				is_pop_faction_type = xenoist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_xenophile_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_xenophile_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.13 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.17
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_xenophile_faction_loyality_cooldown }
+		has_modifier = lnd_xenophile_faction_disloyal
+		AND = {
+			has_faction = xenoist
+			any_pop_faction = {
+				is_pop_faction_type = xenoist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_xenophile_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_xenophile_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.14 days = 1 }
+		}
+	 }
+}
+
+# xenoist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.11
+	title = lnd_faction_events.11.name
+	desc = lnd_faction_events.11.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.12
+	title = lnd_faction_events.12.name
+	desc = lnd_faction_events.12.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.13
+	title = lnd_faction_events.13.name
+	desc = lnd_faction_events.13.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.14
+	title = lnd_faction_events.14.name
+	desc = lnd_faction_events.14.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# supremacy faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.18
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_supremacist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_supremacist_faction_loyal }
+		AND = {
+			has_faction = supremacist
+			any_pop_faction = {
+				is_pop_faction_type = supremacist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_supremacist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_supremacist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.22 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.19
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_supremacist_faction_loyality_cooldown }
+		has_modifier = lnd_supremacist_faction_loyal
+		AND = {
+			has_faction = supremacist
+			any_pop_faction = {
+				is_pop_faction_type = supremacist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_supremacist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_supremacist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.23 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_supremacist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_supremacist_faction_disloyal }
+		AND = {
+			has_faction = supremacist
+			any_pop_faction = {
+				is_pop_faction_type = supremacist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_supremacist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_supremacist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.24 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_supremacist_faction_loyality_cooldown }
+		has_modifier = lnd_supremacist_faction_disloyal
+		AND = {
+			has_faction = supremacist
+			any_pop_faction = {
+				is_pop_faction_type = supremacist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_supremacist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_supremacist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.25 days = 1 }
+		}
+	 }
+}
+
+# Supremacist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.22
+	title = lnd_faction_events.22.name
+	desc = lnd_faction_events.22.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.23
+	title = lnd_faction_events.23.name
+	desc = lnd_faction_events.23.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.24
+	title = lnd_faction_events.24.name
+	desc = lnd_faction_events.24.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.25
+	title = lnd_faction_events.25.name
+	desc = lnd_faction_events.25.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# isolationist faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.26
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_isolationist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_isolationist_faction_loyal }
+		AND = {
+			has_faction = isolationist
+			any_pop_faction = {
+				is_pop_faction_type = isolationist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_isolationist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_isolationist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.30 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.27
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_isolationist_faction_loyality_cooldown }
+		has_modifier = lnd_isolationist_faction_loyal
+		AND = {
+			has_faction = isolationist
+			any_pop_faction = {
+				is_pop_faction_type = isolationist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_isolationist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_isolationist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.31 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.28
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_isolationist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_isolationist_faction_disloyal }
+		AND = {
+			has_faction = isolationist
+			any_pop_faction = {
+				is_pop_faction_type = isolationist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_isolationist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_isolationist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.32 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.29
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_isolationist_faction_loyality_cooldown }
+		has_modifier = lnd_isolationist_faction_disloyal
+		AND = {
+			has_faction = isolationist
+			any_pop_faction = {
+				is_pop_faction_type = isolationist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_isolationist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_isolationist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.33 days = 1 }
+		}
+	 }
+}
+
+# isolationist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.30
+	title = lnd_faction_events.30.name
+	desc = lnd_faction_events.30.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.31
+	title = lnd_faction_events.31.name
+	desc = lnd_faction_events.31.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.32
+	title = lnd_faction_events.32.name
+	desc = lnd_faction_events.32.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.33
+	title = lnd_faction_events.33.name
+	desc = lnd_faction_events.33.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# technologist faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.34
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_materialist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_materialist_faction_loyal }
+		AND = {
+			has_faction = technologist
+			any_pop_faction = {
+				is_pop_faction_type = technologist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_materialist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_materialist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.38 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.35
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_materialist_faction_loyality_cooldown }
+		has_modifier = lnd_materialist_faction_loyal
+		AND = {
+			has_faction = technologist
+			any_pop_faction = {
+				is_pop_faction_type = technologist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_materialist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_materialist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.39 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.36
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_materialist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_materialist_faction_disloyal }
+		AND = {
+			has_faction = technologist
+			any_pop_faction = {
+				is_pop_faction_type = technologist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_materialist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_materialist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.40 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.37
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_materialist_faction_loyality_cooldown }
+		has_modifier = lnd_materialist_faction_disloyal
+		AND = {
+			has_faction = technologist
+			any_pop_faction = {
+				is_pop_faction_type = technologist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_materialist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_materialist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.41 days = 1 }
+		}
+	 }
+}
+
+# technologist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.38
+	title = lnd_faction_events.38.name
+	desc = lnd_faction_events.38.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.39
+	title = lnd_faction_events.39.name
+	desc = lnd_faction_events.39.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.40
+	title = lnd_faction_events.40.name
+	desc = lnd_faction_events.40.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.41
+	title = lnd_faction_events.41.name
+	desc = lnd_faction_events.41.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# traditionalist faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.42
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_spiritualist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_spiritualist_faction_loyal }
+		AND = {
+			has_faction = traditionalist
+			any_pop_faction = {
+				is_pop_faction_type = traditionalist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_spiritualist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_spiritualist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.46 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.43
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_spiritualist_faction_loyality_cooldown }
+		has_modifier = lnd_spiritualist_faction_loyal
+		AND = {
+			has_faction = traditionalist
+			any_pop_faction = {
+				is_pop_faction_type = traditionalist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_spiritualist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_spiritualist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.47 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.44
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_spiritualist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_spiritualist_faction_disloyal }
+		AND = {
+			has_faction = traditionalist
+			any_pop_faction = {
+				is_pop_faction_type = traditionalist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_spiritualist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_spiritualist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.48 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.45
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_spiritualist_faction_loyality_cooldown }
+		has_modifier = lnd_spiritualist_faction_disloyal
+		AND = {
+			has_faction = traditionalist
+			any_pop_faction = {
+				is_pop_faction_type = traditionalist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_spiritualist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_spiritualist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.49 days = 1 }
+		}
+	 }
+}
+
+# traditionalist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.46
+	title = lnd_faction_events.46.name
+	desc = lnd_faction_events.46.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.47
+	title = lnd_faction_events.47.name
+	desc = lnd_faction_events.47.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.48
+	title = lnd_faction_events.48.name
+	desc = lnd_faction_events.48.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.49
+	title = lnd_faction_events.49.name
+	desc = lnd_faction_events.49.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# totalitarian faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_authoritarian_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_authoritarian_faction_loyal }
+		AND = {
+			has_faction = totalitarian
+			any_pop_faction = {
+				is_pop_faction_type = totalitarian
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_authoritarian_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_authoritarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.54 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.51
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_authoritarian_faction_loyality_cooldown }
+		has_modifier = lnd_authoritarian_faction_loyal
+		AND = {
+			has_faction = totalitarian
+			any_pop_faction = {
+				is_pop_faction_type = totalitarian
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_authoritarian_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_authoritarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.55 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.52
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_authoritarian_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_authoritarian_faction_disloyal }
+		AND = {
+			has_faction = totalitarian
+			any_pop_faction = {
+				is_pop_faction_type = totalitarian
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_authoritarian_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_authoritarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.56 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.53
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_authoritarian_faction_loyality_cooldown }
+		has_modifier = lnd_authoritarian_faction_disloyal
+		AND = {
+			has_faction = totalitarian
+			any_pop_faction = {
+				is_pop_faction_type = totalitarian
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_authoritarian_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_authoritarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.57 days = 1 }
+		}
+	 }
+}
+
+# totalitarian faction flavor events
+
+country_event = {
+	id = lnd_faction_events.54
+	title = lnd_faction_events.54.name
+	desc = lnd_faction_events.54.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.55
+	title = lnd_faction_events.55.name
+	desc = lnd_faction_events.55.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.56
+	title = lnd_faction_events.56.name
+	desc = lnd_faction_events.56.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.57
+	title = lnd_faction_events.57.name
+	desc = lnd_faction_events.57.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# progressive faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.58
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_egalitarian_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_egalitarian_faction_loyal }
+		AND = {
+			has_faction = progressive
+			any_pop_faction = {
+				is_pop_faction_type = progressive
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_egalitarian_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_egalitarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.62 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.59
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_egalitarian_faction_loyality_cooldown }
+		has_modifier = lnd_egalitarian_faction_loyal
+		AND = {
+			has_faction = progressive
+			any_pop_faction = {
+				is_pop_faction_type = progressive
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_egalitarian_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_egalitarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.63 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.60
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_egalitarian_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_egalitarian_faction_disloyal }
+		AND = {
+			has_faction = progressive
+			any_pop_faction = {
+				is_pop_faction_type = progressive
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_egalitarian_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_egalitarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.64 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.61
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_egalitarian_faction_loyality_cooldown }
+		has_modifier = lnd_egalitarian_faction_disloyal
+		AND = {
+			has_faction = progressive
+			any_pop_faction = {
+				is_pop_faction_type = progressive
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_egalitarian_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_egalitarian_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.65 days = 1 }
+		}
+	 }
+}
+
+# progressive faction flavor events
+
+country_event = {
+	id = lnd_faction_events.62
+	title = lnd_faction_events.62.name
+	desc = lnd_faction_events.62.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.63
+	title = lnd_faction_events.63.name
+	desc = lnd_faction_events.63.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.64
+	title = lnd_faction_events.64.name
+	desc = lnd_faction_events.64.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.65
+	title = lnd_faction_events.65.name
+	desc = lnd_faction_events.65.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# imperialist faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.66
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_militarist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_militarist_faction_loyal }
+		AND = {
+			has_faction = imperialist
+			any_pop_faction = {
+				is_pop_faction_type = imperialist
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_militarist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_militarist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.70 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.67
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_militarist_faction_loyality_cooldown }
+		has_modifier = lnd_militarist_faction_loyal
+		AND = {
+			has_faction = imperialist
+			any_pop_faction = {
+				is_pop_faction_type = imperialist
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_militarist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_militarist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.71 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.68
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_militarist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_militarist_faction_disloyal }
+		AND = {
+			has_faction = imperialist
+			any_pop_faction = {
+				is_pop_faction_type = imperialist
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_militarist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_militarist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.72 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.69
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_militarist_faction_loyality_cooldown }
+		has_modifier = lnd_militarist_faction_disloyal
+		AND = {
+			has_faction = imperialist
+			any_pop_faction = {
+				is_pop_faction_type = imperialist
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_militarist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_militarist_faction_loyality_cooldown
+			days = 720
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.73 days = 1 }
+		}
+	 }
+}
+
+# imperialist faction flavor events
+
+country_event = {
+	id = lnd_faction_events.70
+	title = lnd_faction_events.70.name
+	desc = lnd_faction_events.70.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.71
+	title = lnd_faction_events.71.name
+	desc = lnd_faction_events.71.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.72
+	title = lnd_faction_events.72.name
+	desc = lnd_faction_events.72.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.73
+	title = lnd_faction_events.73.name
+	desc = lnd_faction_events.73.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+# prosperity faction mechanical events
+
+country_event = {
+	id = lnd_faction_events.74
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_pacifist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_pacifist_faction_loyal }
+		AND = {
+			has_faction = prosperity
+			any_pop_faction = {
+				is_pop_faction_type = prosperity
+				support > 0.1
+				faction_approval > 0.59
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_pacifist_faction_loyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_pacifist_faction_loyality_cooldown
+			days = 800
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.78 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.75
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_pacifist_faction_loyality_cooldown }
+		has_modifier = lnd_pacifist_faction_loyal
+		AND = {
+			has_faction = prosperity
+			any_pop_faction = {
+				is_pop_faction_type = prosperity
+				OR = {
+					support < 0.08
+					faction_approval < 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_pacifist_faction_loyal
+		set_timed_country_flag = {
+			flag = lnd_pacifist_faction_loyality_cooldown
+			days = 800
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.79 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.76
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_pacifist_faction_loyality_cooldown }
+		NOT = { has_modifier = lnd_pacifist_faction_disloyal }
+		AND = {
+			has_faction = prosperity
+			any_pop_faction = {
+				is_pop_faction_type = prosperity
+				support > 0.1
+				faction_approval < 0.4
+			}
+		}
+
+	 }
+	 immediate = {
+		add_modifier = {
+			modifier = lnd_pacifist_faction_disloyal
+			days = -1
+		}
+		set_timed_country_flag = {
+			flag = lnd_pacifist_faction_loyality_cooldown
+			days = 800
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.80 days = 1 }
+		}
+	 }
+}
+
+country_event = {
+	id = lnd_faction_events.77
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { 
+		is_country_type = default
+		NOT = { has_country_flag = lnd_pacifist_faction_loyality_cooldown }
+		has_modifier = lnd_pacifist_faction_disloyal
+		AND = {
+			has_faction = prosperity
+			any_pop_faction = {
+				is_pop_faction_type = prosperity
+				OR = {
+					support < 0.08
+					faction_approval > 0.50
+				}
+			}
+		}
+
+	 }
+	 immediate = {
+		remove_modifier = lnd_pacifist_faction_disloyal
+		set_timed_country_flag = {
+			flag = lnd_pacifist_faction_loyality_cooldown
+			days = 800
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = lnd_faction_events_STFU }
+			}
+			country_event = { id = lnd_faction_events.81 days = 1 }
+		}
+	 }
+}
+
+# prosperity faction flavor events
+
+country_event = {
+	id = lnd_faction_events.78
+	title = lnd_faction_events.78.name
+	desc = lnd_faction_events.78.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.11.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.79
+	title = lnd_faction_events.79.name
+	desc = lnd_faction_events.79.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.12.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.80
+	title = lnd_faction_events.80.name
+	desc = lnd_faction_events.80.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.13.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}
+
+country_event = {
+	id = lnd_faction_events.81
+	title = lnd_faction_events.81.name
+	desc = lnd_faction_events.81.desc
+	is_triggered_only = yes
+	
+	picture = GFX_evt_galactic_senate
+
+	option = {
+		name = lnd_faction_events.14.A
+	}
+
+	option = {
+		name = lnd_faction_events.11.B
+		set_country_flag = lnd_faction_events_STFU
+	}
+}

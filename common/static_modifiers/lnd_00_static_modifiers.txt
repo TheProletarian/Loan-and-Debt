@@ -3,3 +3,78 @@ lnd_agenda_debt_restructuring_finish = {
 	lnd_loans_cost_mult = -0.5
 	planet_stability_add = -15
 }
+
+lnd_xenophile_faction_loyal = { #Social Studies
+	country_society_tech_research_speed = 0.15
+}
+
+lnd_xenophile_faction_disloyal = { #International Condemnations
+	country_influence_produces_mult = -0.1
+}
+
+lnd_supremacist_faction_loyal = { #Self-Strenghening
+	country_unity_produces_mult = 0.1
+}
+
+lnd_supremacist_faction_disloyal = { #Race Riots
+	planet_stability_add = -10
+}
+
+lnd_isolationist_faction_loyal = { #Patriotic Zeal
+	ship_home_territory_fire_rate_mult = 0.25
+}
+
+lnd_isolationist_faction_disloyal = { #Self-Defence Squads
+	pop_citizen_happiness = -0.15
+}
+
+lnd_materialist_faction_loyal = { #Seekers of Wonders
+	science_ship_survey_speed = 0.35
+}
+
+lnd_materialist_faction_disloyal = { #Nihilism
+	country_unity_produces_mult = -0.1
+}
+
+lnd_spiritualist_faction_loyal = { #Marry and Reproduce
+	pop_growth_speed = 0.05
+}
+
+lnd_spiritualist_faction_disloyal = { #Old Ways
+	country_society_tech_research_speed = -0.1
+	country_engineering_tech_research_speed = -0.1
+	country_physics_tech_research_speed = -0.1
+}
+
+lnd_authoritarian_faction_loyal = { #Noble Duty
+	planet_jobs_ruler_produces_mult = 0.25
+}
+
+lnd_authoritarian_faction_disloyal = { #Business Plot
+	planet_jobs_specialist_produces_mult = -0.10
+}
+
+lnd_egalitarian_faction_loyal = { #Labor Heroes
+	planet_jobs_worker_produces_mult = 0.15
+}
+
+lnd_egalitarian_faction_disloyal = { #Construction Workers Strike
+	planet_building_build_speed_mult = -0.2
+	planet_decision_enact_speed_mult = -0.2
+}
+
+lnd_militarist_faction_loyal = { #Motivated Troops
+	army_damage_mult = 0.2
+}
+
+lnd_militarist_faction_disloyal = { #Equipment Waste
+	ships_upkeep_mult = 0.15
+}
+
+lnd_pacifist_faction_loyal = { #Engines of Industry
+	country_engineering_tech_research_speed = 0.15
+}
+
+lnd_pacifist_faction_disloyal = { #Tax Evasion
+	country_energy_produces_mult = -0.1
+}
